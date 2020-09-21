@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>globe_icon_noun_132351_cc_svg_w4n_icon.ico</ApplicationIcon>
+    <ApplicationIcon>TopMost.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
