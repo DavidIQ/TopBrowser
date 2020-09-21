@@ -114,7 +114,7 @@ namespace TopBrowser
                 WindowStyle = WindowStyle.None;
                 TopDock.Visibility = Visibility.Collapsed;
                 ShowTop.IsOpen = true;
-                MainDock.IsEnabled = WindowState != WindowState.Maximized; // Allows window to be dragged
+                MainDock.IsEnabled = WindowState == WindowState.Maximized; // Allows window to be dragged
             }
             else
             {
