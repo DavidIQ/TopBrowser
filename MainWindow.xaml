@@ -60,8 +60,8 @@
             <fa:ImageAwesome DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" />
             <wv2:WebView2 DockPanel.Dock="Bottom" x:Name="Browser" NavigationStarting="Browser_NavigationStarting" NavigationCompleted="Browser_NavigationCompleted" />
         </DockPanel>
-        <Popup Opened="ShowTop_Opened" x:Name="ShowTop" PlacementTarget="{Binding ElementName=TopMostMainWindow}" Placement="Right">
-            <Button ToolTip="Show top bar" Click="TopDock_Toggle" Padding="5 0" FontSize="14" Width="26" Height="26" x:Name="ShowTopDock">
+        <Popup Opened="ShowTop_Opened" AllowsTransparency="True" x:Name="ShowTop" PlacementTarget="{Binding ElementName=Browser}" Placement="Right">
+            <Button ToolTip="Show top bar" Click="TopDock_Toggle" Padding="5 0" FontSize="14" Width="26" Height="26" x:Name="ShowTopDock" Opacity="0.4">
                 <fa:ImageAwesome Icon="ToggleDown" Height="14" Width="14" />
             </Button>
         </Popup>

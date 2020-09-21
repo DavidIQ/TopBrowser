@@ -13,6 +13,9 @@ namespace TopBrowser
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
+            Topmost = false;
+#endif
             Go.Visibility = Browser.Visibility = Visibility.Collapsed;
             TopDock.IsEnabled = false;
             Loader.Spin = true;
@@ -46,7 +49,7 @@ namespace TopBrowser
             }
             catch (EdgeNotFoundException e)
             {
-                MessageBox.Show("You need Edge Chromium Dev or Canary to use this application.", "WebView2 requirement check", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You need Edge Chromium Dev or Canary channel to use this application.", "WebView2 requirement check", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(e.HResult);
             }
         }
@@ -129,9 +132,20 @@ namespace TopBrowser
 
         private void ShowTop_Opened(object sender, EventArgs e)
         {
-            // Keeps popup control attached to window
+            // "Pulsing" the HorizontalOffset prop keeps the popup control attached to window
             ShowTop.HorizontalOffset += 1;
-            ShowTop.HorizontalOffset = ShowTopDock.Width;
+
+            // When window is maximized popup is lost so let's prevent that
+            if (WindowState == WindowState.Maximized)
+            {
+                ShowTop.HorizontalOffset = 0;
+                ShowTop.Placement = System.Windows.Controls.Primitives.PlacementMode.Absolute;
+            }
+            else
+            {
+                ShowTop.HorizontalOffset = ShowTopDock.Width;
+                ShowTop.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
+            }
         }
     }
 }
