@@ -7,12 +7,17 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         xmlns:p="clr-namespace:TopBrowser.Properties"
+        x:Name="TopMostMainWindow"
         Height="{Binding Source={x:Static p:Settings.Default}, Path=Height, Mode=TwoWay}"
         Width="{Binding Source={x:Static p:Settings.Default}, Path=Width, Mode=TwoWay}"
         WindowState="{Binding Source={x:Static p:Settings.Default}, Path=WindowState, Mode=TwoWay}"
         MinWidth="535"
         MinHeight="235"
-        Title="Top Browser" Topmost="True" Closed="Window_Closed" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
+        Title="Top Browser"
+        Topmost="True"
+        Closed="Window_Closed"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -47,16 +52,16 @@
                     <fa:ImageAwesome Icon="Spinner" Height="14" Width="14" Spin="True" />
                 </Button>
                 <Button x:Name="Go" DockPanel.Dock="Right" IsDefault="True" Click="Go_Click" Padding="5 0" FontSize="14" Content="_Go" />
-                <Button ToolTip="Hide top bar" Click="TopDock_Toggle" DockPanel.Dock="Left" x:Name="HideTop" Padding="5 0" FontSize="14">
+                <Button ToolTip="Hide top bar" Click="TopDock_Toggle" DockPanel.Dock="Left" x:Name="HideTopDock" Padding="5 0" FontSize="14">
                     <fa:ImageAwesome Icon="ToggleUp" Height="14" Width="14" />
                 </Button>
                 <TextBox DockPanel.Dock="Left" Cursor="IBeam" Text="{Binding Source={x:Static p:Settings.Default}, Path=Url, Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Padding="0 5" Tag="Enter a URL and press 'Enter' or click on 'Go'" x:Name="Url" HorizontalAlignment="Stretch" FontSize="14" />
             </DockPanel>
-            <fa:ImageAwesome DockPanel.Dock="Bottom" x:Name="Loader" Icon="Asterisk" Margin="40" Foreground="#FF9A9696" />
+            <fa:ImageAwesome DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" />
             <wv2:WebView2 DockPanel.Dock="Bottom" x:Name="Browser" NavigationStarting="Browser_NavigationStarting" NavigationCompleted="Browser_NavigationCompleted" />
         </DockPanel>
-        <Popup Opened="ShowTop_Opened" x:Name="ShowTop" PlacementTarget="{Binding ElementName=Browser}" Placement="Right">
-            <Button ToolTip="Show top bar" Click="TopDock_Toggle" Padding="5 0" FontSize="14" Width="26" Height="26">
+        <Popup Opened="ShowTop_Opened" x:Name="ShowTop" PlacementTarget="{Binding ElementName=TopMostMainWindow}" Placement="Right">
+            <Button ToolTip="Show top bar" Click="TopDock_Toggle" Padding="5 0" FontSize="14" Width="26" Height="26" x:Name="ShowTopDock">
                 <fa:ImageAwesome Icon="ToggleDown" Height="14" Width="14" />
             </Button>
         </Popup>

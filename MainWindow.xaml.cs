@@ -41,7 +41,7 @@ namespace TopBrowser
                     Go.Visibility = Visibility.Visible;
                     TopDock.IsEnabled = true;
                     Loader.Spin = false;
-                    Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.Asterisk;
+                    Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.Adjust;
                 }
             }
             catch (EdgeNotFoundException e)
@@ -106,12 +106,12 @@ namespace TopBrowser
 
         private void TopDock_Toggle(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(HideTop))
+            if (sender.Equals(HideTopDock))
             {
                 WindowStyle = WindowStyle.None;
                 TopDock.Visibility = Visibility.Collapsed;
                 ShowTop.IsOpen = true;
-                MainDock.IsEnabled = false;
+                MainDock.IsEnabled = WindowState != WindowState.Maximized; // Allows window to be dragged
             }
             else
             {
@@ -129,9 +129,9 @@ namespace TopBrowser
 
         private void ShowTop_Opened(object sender, EventArgs e)
         {
+            // Keeps popup control attached to window
             ShowTop.HorizontalOffset += 1;
-            ShowTop.HorizontalOffset -= 1;
-            ShowTop.HorizontalOffset = 26;
+            ShowTop.HorizontalOffset = ShowTopDock.Width;
         }
     }
 }
