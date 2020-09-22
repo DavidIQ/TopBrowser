@@ -46,6 +46,7 @@ namespace TopBrowser
                     Loader.Spin = false;
                     Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.Adjust;
                 }
+                DockToggle(Properties.Settings.Default.DockCollapsed);
             }
             catch (EdgeNotFoundException e)
             {
@@ -99,6 +100,9 @@ namespace TopBrowser
             TopDock.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Allows window to be dragged by controls and not just by title bar
+        /// </summary>
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (e.ChangedButton == System.Windows.Input.MouseButton.Left)
@@ -109,8 +113,14 @@ namespace TopBrowser
 
         private void TopDock_Toggle(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(HideTopDock))
+            DockToggle(sender.Equals(HideTopDock));
+        }
+
+        private void DockToggle(bool collapseDock)
+        {
+            if (collapseDock)
             {
+                Properties.Settings.Default.DockCollapsed = true;
                 WindowStyle = WindowStyle.None;
                 TopDock.Visibility = Visibility.Collapsed;
                 ShowTop.IsOpen = true;
@@ -118,6 +128,7 @@ namespace TopBrowser
             }
             else
             {
+                Properties.Settings.Default.DockCollapsed = false;
                 WindowStyle = WindowStyle.SingleBorderWindow;
                 TopDock.Visibility = Visibility.Visible;
                 ShowTop.IsOpen = false;

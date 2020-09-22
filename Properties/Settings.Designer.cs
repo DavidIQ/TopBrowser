@@ -70,5 +70,17 @@ namespace TopBrowser.Properties {
                 this["WindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DockCollapsed {
+            get {
+                return ((bool)(this["DockCollapsed"]));
+            }
+            set {
+                this["DockCollapsed"] = value;
+            }
+        }
     }
 }
