@@ -46,7 +46,8 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DockPanel LastChildFill="True" x:Name="MainDock">
+        <DockPanel x:Name="MainDock" LastChildFill="True">
+            <Label x:Name="PopupPlaceholder" Visibility="Collapsed" Content="This is here so the popup can attach to something since WebView can't be attached to" />
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" x:Name="TopDock">
                 <Button x:Name="GoBusy" DockPanel.Dock="Right" IsDefault="True" Click="Go_Click" Padding="5 0" FontSize="14" IsEnabled="False">
                     <fa:ImageAwesome Icon="Spinner" Height="14" Width="14" Spin="True" />
@@ -57,10 +58,10 @@
                 </Button>
                 <TextBox DockPanel.Dock="Left" Cursor="IBeam" Text="{Binding Source={x:Static p:Settings.Default}, Path=Url, Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Padding="0 5" Tag="Enter a URL and press 'Enter' or click on 'Go'" x:Name="Url" HorizontalAlignment="Stretch" FontSize="14" />
             </DockPanel>
-            <fa:ImageAwesome DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" />
+            <fa:ImageAwesome DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             <wv2:WebView2 DockPanel.Dock="Bottom" x:Name="Browser" NavigationStarting="Browser_NavigationStarting" NavigationCompleted="Browser_NavigationCompleted" />
         </DockPanel>
-        <Popup Opened="ShowTop_Opened" AllowsTransparency="True" x:Name="ShowTop" PlacementTarget="{Binding ElementName=Browser}" Placement="Right">
+        <Popup Opened="ShowTop_Opened" AllowsTransparency="True" x:Name="ShowTop" PlacementTarget="{Binding ElementName=PopupPlaceholder}" Placement="Left">
             <Button ToolTip="Show top bar" Click="TopDock_Toggle" Padding="5 0" FontSize="14" Width="26" Height="26" x:Name="ShowTopDock" Opacity="0.4">
                 <fa:ImageAwesome Icon="ToggleDown" Height="14" Width="14" />
             </Button>

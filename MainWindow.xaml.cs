@@ -143,20 +143,12 @@ namespace TopBrowser
 
         private void ShowTop_Opened(object sender, EventArgs e)
         {
-            // "Pulsing" the HorizontalOffset prop keeps the popup control attached to window
+            // "Pulsing" the HorizontalOffset prop keeps the popup control where it needs to be in the window
             ShowTop.HorizontalOffset += 1;
+            ShowTop.HorizontalOffset -= 1;
 
-            // When window is maximized popup is lost so let's prevent that
-            if (WindowState == WindowState.Maximized)
-            {
-                ShowTop.HorizontalOffset = 0;
-                ShowTop.Placement = System.Windows.Controls.Primitives.PlacementMode.Absolute;
-            }
-            else
-            {
-                ShowTop.HorizontalOffset = ShowTopDock.Width;
-                ShowTop.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
-            }
+            // Button acts strangely when window is partially offscreen so just close it momentarily
+            ShowTop.IsOpen = TopDock.Visibility == Visibility.Collapsed && Left > 0 && Top > 0;
         }
     }
 }
