@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Media;
 using Microsoft.Web.WebView2.Core;
 
 namespace TopBrowser
@@ -48,7 +47,7 @@ namespace TopBrowser
                 }
                 DockToggle(Properties.Settings.Default.DockCollapsed);
             }
-            catch (EdgeNotFoundException e)
+            catch (WebView2RuntimeNotFoundException e)
             {
                 MessageBox.Show("You need Edge Chromium Dev or Canary channel to use this application.", "WebView2 requirement check", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(e.HResult);
