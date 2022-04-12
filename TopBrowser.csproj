@@ -1,15 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows8.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>TopMost.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.674-prerelease" />
+    <PackageReference Include="FontAwesome.Sharp" Version="5.15.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1150.38" />
   </ItemGroup>
 
   <ItemGroup>

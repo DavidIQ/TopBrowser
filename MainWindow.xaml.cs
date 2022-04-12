@@ -9,6 +9,8 @@ namespace TopBrowser
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool SpinLoader { get; set; } = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -17,8 +19,8 @@ namespace TopBrowser
 #endif
             Go.Visibility = Browser.Visibility = Visibility.Collapsed;
             TopDock.IsEnabled = false;
-            Loader.Spin = true;
-            Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleOutlineNotch;
+            SpinLoader = true;
+            Loader.Icon = FontAwesome.Sharp.IconChar.CircleNotch;
             InitializeAsync();
         }
 
@@ -42,8 +44,8 @@ namespace TopBrowser
                     GoBusy.Visibility = Visibility.Collapsed;
                     Go.Visibility = Visibility.Visible;
                     TopDock.IsEnabled = true;
-                    Loader.Spin = false;
-                    Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.Adjust;
+                    SpinLoader = false;
+                    Loader.Icon = FontAwesome.Sharp.IconChar.Adjust;
                 }
                 DockToggle(Properties.Settings.Default.DockCollapsed);
             }
@@ -78,8 +80,8 @@ namespace TopBrowser
             Browser.Visibility = Visibility.Collapsed;
             TopDock.IsEnabled = false;
             Loader.Visibility = Visibility.Visible;
-            Loader.Spin = true;
-            Loader.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleOutlineNotch;
+            SpinLoader = true;
+            Loader.Icon = FontAwesome.Sharp.IconChar.CircleNotch;
 
             Browser.CoreWebView2.Navigate(uriResult.ToString());
         }
@@ -93,7 +95,7 @@ namespace TopBrowser
 
         private void Browser_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            Loader.Spin = false;
+            SpinLoader = false;
             GoBusy.Visibility = Loader.Visibility = Visibility.Collapsed;
             Go.Visibility = Browser.Visibility = Visibility.Visible;
             TopDock.IsEnabled = true;
