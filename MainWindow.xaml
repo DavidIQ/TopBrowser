@@ -17,7 +17,7 @@
         Topmost="True"
         Closed="Window_Closed"
         MouseDown="Window_MouseDown"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="Manual">
     <Window.Resources>
         <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -58,7 +58,7 @@
                 </Button>
                 <TextBox DockPanel.Dock="Left" Cursor="IBeam" Text="{Binding Source={x:Static p:Settings.Default}, Path=Url, Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Padding="0 5" Tag="Enter a URL and press 'Enter' or click on 'Go'" x:Name="Url" HorizontalAlignment="Stretch" FontSize="14" />
             </DockPanel>
-            <fa:IconImage DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <fa:IconImage fa:Awesome.Spin="{Binding ElementName=TopMostMainWindow, Path=SpinLoader}" DockPanel.Dock="Bottom" x:Name="Loader" Icon="Adjust" Margin="40" Foreground="#FF9A9696" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             <wv2:WebView2 DockPanel.Dock="Bottom" x:Name="Browser" NavigationStarting="Browser_NavigationStarting" NavigationCompleted="Browser_NavigationCompleted" />
         </DockPanel>
         <Popup Opened="ShowTop_Opened" AllowsTransparency="True" x:Name="ShowTop" PlacementTarget="{Binding ElementName=PopupPlaceholder}" Placement="Left">

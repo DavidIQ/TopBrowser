@@ -19,7 +19,6 @@ namespace TopBrowser
 #endif
             Go.Visibility = Browser.Visibility = Visibility.Collapsed;
             TopDock.IsEnabled = false;
-            SpinLoader = true;
             Loader.Icon = FontAwesome.Sharp.IconChar.CircleNotch;
             InitializeAsync();
         }
@@ -51,7 +50,7 @@ namespace TopBrowser
             }
             catch (WebView2RuntimeNotFoundException e)
             {
-                MessageBox.Show("You need Edge Chromium Dev or Canary channel to use this application.", "WebView2 requirement check", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You need Edge Chromium to use this application.", "WebView2 requirement check", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(e.HResult);
             }
         }
@@ -149,7 +148,7 @@ namespace TopBrowser
             ShowTop.HorizontalOffset -= 1;
 
             // Button acts strangely when window is partially offscreen so just close it momentarily
-            ShowTop.IsOpen = TopDock.Visibility == Visibility.Collapsed && Left > 0 && Top > 0;
+            ShowTop.IsOpen = TopDock.Visibility == Visibility.Collapsed && (Left + 5) > 0 && (Top + 5) > 0;
         }
     }
 }
